@@ -1,0 +1,41 @@
+.groupCard {
+  z-index: 1;
+}
+
+.navBtn {
+  transition: all 0.2s ease;
+}
+
+.headerBox:hover .navBtn {
+  rotate: -25deg;
+}
+
+.navBtn:hover {
+  color: rgb(204, 204, 204);
+}
+
+.activeBox {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.39);
+  opacity: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 40px;
+  background-color: #ffcfcf;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 40px;
+  background-color: rgb(124, 124, 124);
+}

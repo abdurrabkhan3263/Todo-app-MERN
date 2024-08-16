@@ -1,0 +1,72 @@
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --clr-3: #00489b;
+  --clr-4: #2d9224;
+  --clr-5: #9e2323;
+}
+
+.update__icon {
+  transition: transform 0.4s ease;
+}
+
+.update__todo:hover {
+  width: 95px;
+  opacity: 1;
+  padding-inline: 10px;
+  padding-block: 5px;
+  background-color: blueviolet;
+}
+
+.update__todo:hover .update__icon {
+  display: block;
+  opacity: 1;
+  transform: translateX(-100%) scale(1.1);
+}
+
+.hello {
+  color: red;
+}
+
+.rgb__Effect {
+  position: relative;
+}
+
+.rgb__Effect::before,
+.rgb__Effect::after {
+  content: "";
+  position: absolute;
+  inset: -0.1rem;
+  z-index: -1;
+  background: conic-gradient(
+    from var(--gradient-angle),
+    var(--clr-3),
+    var(--clr-4),
+    var(--clr-5),
+    var(--clr-4),
+    var(--clr-3)
+  );
+  border-radius: 9999px;
+  animation: rotation 5s linear infinite;
+}
+
+.rgb__Effect::before {
+  filter: blur(0.5rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+.img__Container:hover .user__Container {
+  display: block;
+}
