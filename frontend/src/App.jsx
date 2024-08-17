@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { SideNav } from "./components";
 import Container from "./components/Container/Container";
 import { AppProvider } from "./context/context";
@@ -10,6 +10,7 @@ function App() {
   const [mode, setMode] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {

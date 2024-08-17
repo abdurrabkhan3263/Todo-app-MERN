@@ -11,9 +11,17 @@ import { Edit } from "lucide-react";
 import { Save } from "lucide-react";
 import { MoveUpRight } from "lucide-react";
 import { Navigation } from "lucide-react";
-import { KeyRound as Pass } from "lucide-react";
+import { KeyRoundIcon } from "lucide-react";
+import { AtSignIcon } from "lucide-react";
+import { Eye as OpenEye } from "lucide-react";
+import { EyeOff as CloseEye } from "lucide-react";
+import { Camera } from "lucide-react";
+import { CaseSensitive as Name } from "lucide-react";
+import { CircleUserRound as Person } from "lucide-react";
+import { Phone } from "lucide-react";
 import { GrUpdate as Update } from "react-icons/gr";
 import no__image__available from "./no__image__available.jpg";
+import background_image from "./background_image.jpg";
 
 export {
   List,
@@ -29,7 +37,15 @@ export {
   Save,
   MoveUpRight,
   Navigation,
-  Pass,
+  KeyRoundIcon,
+  AtSignIcon,
   Update,
+  OpenEye,
+  CloseEye,
+  Name,
+  Person,
+  Phone,
+  Camera,
   no__image__available,
+  background_image,
 };

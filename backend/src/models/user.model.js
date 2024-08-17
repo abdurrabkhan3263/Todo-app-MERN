@@ -57,16 +57,13 @@ const userSchema = Schema(
       type: Schema.Types.ObjectId,
       ref: "List",
     },
-    bio: {
-      type: String,
-    },
     todoSection: {
       type: Array,
       required: true,
     },
     phoneNumber: {
       type: String,
-      require: [true, "Phone number is required"],
+      required: [true, "Phone number is required"],
     },
   },
   { timestamps: true }

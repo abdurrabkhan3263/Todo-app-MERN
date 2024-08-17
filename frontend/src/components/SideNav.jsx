@@ -13,8 +13,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import UserApi from "@/Api/User";
 import "@/components/ui/style.css";
-import { useEffect } from "react";
 import { ProfileSection } from "./index";
+import { Switch } from "./ui/switch";
 
 const navInfo = [
   {
@@ -48,19 +48,6 @@ function SideNav() {
     avatar: { url } = "",
     fullName = "",
   } = getUserDetails();
-
-  const handleLogout = async () => {
-    try {
-      const response = await UserApi.logoutUser();
-      toast.success(response?.message);
-      logoutUser();
-      navigate("/login");
-    } catch (error) {
-      toast.error(error.message);
-      logoutUser();
-      navigate("/login");
-    }
-  };
 
   return (
     <div
@@ -117,7 +104,13 @@ function SideNav() {
             </div>
           </div>
           <div className="flex-1 content-center text-end">
-            <Button onClick={() => changeMode()}>{mode}</Button>
+            <Switch
+              checked={mode === "dark" ? true : false}
+              value={mode === "dark" ? true : false}
+              onCheckedChange={() => changeMode()}
+              className="border border-dark shadow-md"
+              thumbClassName="border border-dark"
+            />
           </div>
         </div>
       </div>

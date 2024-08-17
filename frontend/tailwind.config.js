@@ -69,6 +69,10 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      borderColor: {
+        dark: "#00000040",
+        light: "#ffffff20",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

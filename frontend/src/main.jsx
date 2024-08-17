@@ -35,13 +35,7 @@ import {
 } from "./components/index.js";
 import { Toaster } from "./components/ui/sonner.jsx";
 import EditTodo from "./components/EditTodo.jsx";
-
-const ProfileRoutes = () => (
-  <>
-    <Route path="update-profile" element={<UpdateProfile />} />
-    <Route path="change-password" element={<ChangePassword />} />
-  </>
-);
+import AuthProvider from "./components/AuthProvider.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -49,40 +43,86 @@ const router = createBrowserRouter(
       <Route
         path="/sign-in"
         element={
-          <Auth>
-            <SignInForm />
-          </Auth>
+          <AuthProvider authentication={false}>
+            <Auth>
+              <SignInForm />
+            </Auth>
+          </AuthProvider>
         }
       />
       <Route
         path="/login"
         element={
-          <Auth>
-            <LoginForm />
-          </Auth>
+          <AuthProvider authentication={false}>
+            <Auth>
+              <LoginForm />
+            </Auth>
+          </AuthProvider>
         }
       />
-      <Route path="" element={<Todo />}>
+      <Route
+        path=""
+        element={
+          <AuthProvider authentication={true}>
+            <Todo />
+          </AuthProvider>
+        }
+      >
         <Route path="/todo" element={<AddTodo />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/change-password" element={<ChangePassword />} />;
         <Route path="edit-todo/:todo_id" element={<EditTodo />} />
       </Route>
-      <Route path="/List" element={<List />}>
+      <Route
+        path="/List"
+        element={
+          <AuthProvider authentication={true}>
+            <List />
+          </AuthProvider>
+        }
+      >
         <Route path="add-list/:list_id?" element={<AddList />} />
       </Route>
-      <Route path="/group" element={<Group />}>
+      <Route
+        path="/group"
+        element={
+          <AuthProvider authentication={true}>
+            <Group />
+          </AuthProvider>
+        }
+      >
         <Route path="add-group" element={<AddGroup />} />
         <Route path="edit-group/:group_id" element={<EditGroup />} />
       </Route>
-      <Route path="/important" element={<Important />}>
+      <Route
+        path="/important"
+        element={
+          <AuthProvider authentication={true}>
+            <Important />
+          </AuthProvider>
+        }
+      >
         <Route path="edit-todo/:todo_id" element={<EditTodo />} />
       </Route>
-      <Route path="/todo/:id" element={<List_Todo />}>
+      <Route
+        path="/todo/:id"
+        element={
+          <AuthProvider authentication={true}>
+            <List_Todo />
+          </AuthProvider>
+        }
+      >
         <Route path="todo" element={<AddTodo />} />
         <Route path="edit-todo/:todo_id" element={<EditTodo />} />
       </Route>
-      <Route path="/group-list/:id" element={<GroupList />}>
+      <Route
+        path="/group-list/:id"
+        element={
+          <AuthProvider>
+            <GroupList />
+          </AuthProvider>
+        }
+      >
         <Route path="edit-list/:list_id?" element={<AddList />} />
       </Route>
     </Route>,

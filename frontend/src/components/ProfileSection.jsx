@@ -1,6 +1,6 @@
 import React from "react";
 import "@/components/ui/style.css";
-import { LogOut, Pass, Update } from "@/assets/icons";
+import { KeyRoundIcon, LogOut, Update } from "@/assets/icons";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import useApp from "@/context/context";
@@ -52,7 +52,8 @@ function ProfileSection({ userName, avatar }) {
           className="flex h-11 w-full items-center gap-x-3 rounded-md bg-blue-500 px-3 transition-colors hover:bg-blue-600"
           onClick={() => navigate("/change-password")}
         >
-          <Pass /> <p className="text-sm font-semibold">Change Password</p>
+          <KeyRoundIcon />
+          <p className="text-sm font-semibold">Change Password</p>
         </button>
       </div>
       <div className="flex h-[50px] w-full cursor-default items-center justify-between rounded-xl bg-orange-600 px-2 py-3 shadow-lg">

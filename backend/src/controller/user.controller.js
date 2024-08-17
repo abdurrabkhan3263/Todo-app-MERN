@@ -27,13 +27,13 @@ const options = {
 };
 
 const register = asyncHandler(async (req, res) => {
-  const { fullName, email, username, password: pass, bio } = req.body;
+  const { fullName, email, username, password: pass, phoneNumber } = req.body;
   const files = req.file;
 
   if (!files) throw new ApiError(400, "Avatar image is required");
 
   if (
-    [fullName, email, username, pass].some(
+    [fullName, email, username, pass, phoneNumber].some(
       (items) => items?.trim() === "" || !items
     )
   ) {
@@ -58,8 +58,8 @@ const register = asyncHandler(async (req, res) => {
     email,
     username,
     password: pass,
-    bio: bio || undefined,
     avatar: uploadAvatar,
+    phoneNumber,
   });
 
   const jsObj = user.toObject();
