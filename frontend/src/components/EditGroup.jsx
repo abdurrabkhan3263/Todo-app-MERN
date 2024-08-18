@@ -8,6 +8,7 @@ import useApp from "@/context/context";
 import TodoApi from "@/Api/Todo";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import FormLayoutContainer from "./Container/FormLayoutContainer";
 
 function EditGroup() {
   const navigate = useNavigate();
@@ -73,9 +74,9 @@ function EditGroup() {
 
   return (
     <div
-      className={`flex h-[70vh] w-[27vw] flex-col ${
+      className={`flex h-screen w-screen flex-col lg:h-[70vh] lg:w-[90vw] 2xl:w-[27vw] ${
         mode === "dark" ? "border-white" : "border-gray-700"
-      } rounded-xl border bg-slate-300 p-5 shadow-lg`}
+      } border bg-slate-300 p-5 shadow-lg md:rounded-xl`}
     >
       <div className="mb-3 flex h-12 w-full items-center justify-between">
         <p className="text-3xl font-semibold text-gray-700">Update Group</p>

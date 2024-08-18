@@ -14,8 +14,10 @@ export default {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        llg: "1052px",
       },
     },
+
     extend: {
       colors: {
         border: "hsl(var(--border))",

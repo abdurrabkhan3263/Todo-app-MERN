@@ -14,6 +14,7 @@ import GroupList from "./GroupList";
 import ProfileSection from "./ProfileSection";
 import UpdateProfile from "./UpdateProfile";
 import ChangePassword from "./ChangePassword";
+import MobileSideNav from "./MobileSideNav";
 
 export {
   SideNav,
@@ -31,4 +32,5 @@ export {
   ProfileSection,
   UpdateProfile,
   ChangePassword,
+  MobileSideNav,
 };

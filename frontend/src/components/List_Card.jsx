@@ -61,7 +61,7 @@ function List_Card({ title, content, id, color }) {
         </div>
       )}
       <div
-        className={`relative flex h-[300px] w-full flex-col overflow-hidden rounded-2xl text-white transition-all hover:-translate-y-1 hover:scale-105 ${mode === "dark" ? `shadow-lg shadow-light` : "shadow-lg shadow-dark"} p-4`}
+        className={`relative flex h-[340px] w-full flex-col overflow-hidden rounded-2xl text-white transition-all hover:-translate-y-1 hover:scale-105 xl:h-[300px] ${mode === "dark" ? `shadow-lg shadow-light` : "shadow-lg shadow-dark"} p-4`}
         style={{
           backgroundColor:
             mode === "dark"

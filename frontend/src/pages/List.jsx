@@ -30,7 +30,7 @@ function List() {
 
   return (
     <div className="flex h-full w-full flex-col">
-      <div className="fixed bottom-1/2 right-[42%] z-[70] translate-x-1/2 translate-y-1/2">
+      <div className="fixed bottom-1/2 right-[50%] z-[70] translate-x-1/2 translate-y-1/2">
         <Outlet />
       </div>
       <div className="overflow-hidden">
@@ -41,7 +41,7 @@ function List() {
           List
         </div>
       </div>
-      <div className="mt-6 grid h-full w-full flex-1 grid-cols-5 gap-6">
+      <div className="mt-6 grid h-full w-full flex-1 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5">
         <AddCard navLink={"add-list"} />
         {isLoading
           ? "Loading......"

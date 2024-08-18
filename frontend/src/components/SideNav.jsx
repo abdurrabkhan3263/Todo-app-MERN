@@ -1,20 +1,8 @@
-import {
-  List,
-  ListTodo,
-  Group,
-  Star,
-  Moon,
-  Sun,
-  LogOut,
-} from "../assets/icons";
+import { List, ListTodo, Group, Star, Moon, Sun } from "../assets/icons";
 import useApp from "@/context/context";
-import { Button } from "./ui/button";
-import { NavLink, useNavigate } from "react-router-dom";
-import { toast } from "sonner";
-import UserApi from "@/Api/User";
+import { NavLink } from "react-router-dom";
 import "@/components/ui/style.css";
 import { ProfileSection } from "./index";
-import { Switch } from "./ui/switch";
 
 const navInfo = [
   {
@@ -41,10 +29,8 @@ const navInfo = [
 
 function SideNav() {
   const { mode, changeMode, logoutUser, getUserDetails } = useApp();
-  const navigate = useNavigate();
   const {
     username = "",
-    _id = "",
     avatar: { url } = "",
     fullName = "",
   } = getUserDetails();
@@ -104,13 +90,12 @@ function SideNav() {
             </div>
           </div>
           <div className="flex-1 content-center text-end">
-            <Switch
-              checked={mode === "dark" ? true : false}
-              value={mode === "dark" ? true : false}
-              onCheckedChange={() => changeMode()}
-              className="border border-dark shadow-md"
-              thumbClassName="border border-dark"
-            />
+            <button
+              className={`rounded-lg border ${mode === "dark" ? "border-lightBtn" : "border-dark"} p-2`}
+              onClick={() => changeMode()}
+            >
+              {mode === "light" ? <Moon /> : <Sun />}
+            </button>
           </div>
         </div>
       </div>

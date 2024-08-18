@@ -338,7 +338,6 @@ class Todo {
     }
   }
   async updateGroup(data, id) {
-    console.log(data);
     try {
       const response = await fetch(`${this.baseUrl}/group/update/${id}`, {
         method: "PATCH",

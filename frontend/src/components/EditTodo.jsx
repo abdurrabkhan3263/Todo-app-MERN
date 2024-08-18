@@ -9,6 +9,7 @@ import TodoApi from "@/Api/Todo";
 import { useNavigate, useParams } from "react-router-dom";
 import useApp from "@/context/context";
 import { formatDate } from "@/lib/utils";
+import FormLayoutContainer from "./Container/FormLayoutContainer";
 
 function EditTodo() {
   const { register, handleSubmit, setValue } = useForm();
@@ -42,8 +43,6 @@ function EditTodo() {
     if (Object.keys(updatedData).length <= 0) {
       return navigate(-1);
     }
-    console.log(updatedData);
-    return;
     handleUpdateTodo.mutate(data);
   };
 
@@ -59,7 +58,6 @@ function EditTodo() {
             todoName = "",
             content = "",
             remindMe = "",
-            dueDate = "",
           } = await TodoApi.getTodoById(todo_id);
           const formattedDate = formatDate(remindMe);
           todoName && setValue("todoName", todoName);
@@ -75,9 +73,7 @@ function EditTodo() {
   }, [todo_id]);
 
   return (
-    <div
-      className={`flex h-[70vh] w-[27vw] flex-col items-center ${mode === "dark" ? "border-white" : "border-gray-700"} justify-between rounded-xl border bg-slate-300 p-5 shadow-lg`}
-    >
+    <FormLayoutContainer>
       <div className="flex h-12 w-full items-center justify-between">
         <p className="text-3xl font-semibold text-gray-700">Todo</p>
         <button className="h-full" onClick={() => handleBackNav()}>
@@ -123,13 +119,11 @@ function EditTodo() {
                     const selectedDate = new Date(value).getTime();
                     const now = Date.now();
                     const tenMinutesFromNow = now + 10 * 60 * 1000;
-
                     if (
                       !value ||
                       selectedDate === new Date(todoData.remindMe).getTime()
                     )
                       return true;
-
                     if (selectedDate <= tenMinutesFromNow) {
                       setValue("remindMe", formatDate(todoData.remindMe));
                       toast.warning(
@@ -148,7 +142,7 @@ function EditTodo() {
           </Button>
         </form>
       </div>
-    </div>
+    </FormLayoutContainer>
   );
 }
 

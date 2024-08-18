@@ -86,8 +86,6 @@ const updateGroup = asyncHandler(async (req, res) => {
     $pull: { listIds: { $in: deletedIds } },
   });
 
-  console.log("hello1");
-
   const updatedGroup = await Group.findByIdAndUpdate(
     group_id,
     {
@@ -100,19 +98,15 @@ const updateGroup = asyncHandler(async (req, res) => {
     }
   );
 
-  console.log("hello2");
-
   if (!updatedGroup)
     throw new ApiError(500, "Server error while updating the group");
 
   await List.updateMany({ _id: { $in: listIds } }, { isInGroup: true });
 
   if (deletedIds.length > 0) {
-    console.log("hello sir how are you");
     await List.updateMany({ _id: { $in: deletedIds } }, { isInGroup: false });
   }
 
-  console.log("hello3");
   return res
     .status(200)
     .json(new ApiResponse(200, updatedGroup, "Group is updated successfully"));

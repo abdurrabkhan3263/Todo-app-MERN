@@ -9,6 +9,7 @@ import TodoApi from "@/Api/Todo";
 import { useNavigate, useParams } from "react-router-dom";
 import useApp from "@/context/context";
 import { formatDate } from "@/lib/utils";
+import FormLayoutContainer from "./Container/FormLayoutContainer";
 
 function AddTodo() {
   const {
@@ -56,9 +57,7 @@ function AddTodo() {
   };
 
   return (
-    <div
-      className={`flex h-[70vh] w-[27vw] flex-col items-center ${mode === "dark" ? "border-white" : "border-gray-700"} justify-between rounded-xl border bg-slate-300 p-5 shadow-lg`}
-    >
+    <FormLayoutContainer>
       <div className="flex h-12 w-full items-center justify-between">
         <p className="text-3xl font-semibold text-gray-700">Todo</p>
         <button className="h-full" onClick={() => handleBackNav()}>
@@ -106,7 +105,6 @@ function AddTodo() {
                     const selectedDate = new Date(value).getTime();
                     const now = Date.now();
                     const tenMinutesFromNow = now + 10 * 60 * 1000;
-
                     if (selectedDate <= tenMinutesFromNow) {
                       setValue("remindMe", formatDate(selectedDate));
                       toast.warning(
@@ -126,7 +124,7 @@ function AddTodo() {
           </Button>
         </form>
       </div>
-    </div>
+    </FormLayoutContainer>
   );
 }
 

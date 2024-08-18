@@ -22,6 +22,7 @@ import { Phone } from "lucide-react";
 import { GrUpdate as Update } from "react-icons/gr";
 import no__image__available from "./no__image__available.jpg";
 import background_image from "./background_image.jpg";
+import todo__logo from "./todo__logo.png";
 
 export {
   List,
@@ -48,4 +49,5 @@ export {
   Camera,
   no__image__available,
   background_image,
+  todo__logo,
 };

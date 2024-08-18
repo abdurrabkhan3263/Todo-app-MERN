@@ -20,8 +20,7 @@ function ChangePassword() {
       return;
     }
     try {
-      const response = await UserApi.changePassword(formData);
-      console.log(response);
+      await UserApi.changePassword(formData);
       toast.success("Password changed successfully");
       navigate(-1);
     } catch (error) {

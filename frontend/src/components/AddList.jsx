@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import useApp from "@/context/context";
 import { useParams } from "react-router-dom";
 import { darkColor, lightColor } from "@/lib/colors";
+import FormLayoutContainer from "./Container/FormLayoutContainer";
 
 function AddList() {
   const { register, handleSubmit, setValue, getValues } = useForm();
@@ -101,9 +102,7 @@ function AddList() {
   }, [data]);
 
   return (
-    <div
-      className={`flex h-[70vh] w-[27vw] flex-col items-center ${mode === "dark" ? "border-white" : "border-gray-700"} justify-between rounded-xl border bg-slate-300 p-5 shadow-lg`}
-    >
+    <FormLayoutContainer>
       <div className="flex h-12 w-full items-center justify-between">
         <p className="text-3xl font-semibold text-gray-700">List</p>
         <button className="h-full" onClick={() => navigate(-1)}>
@@ -185,7 +184,7 @@ function AddList() {
           </Button>
         </form>
       </div>
-    </div>
+    </FormLayoutContainer>
   );
 }
 

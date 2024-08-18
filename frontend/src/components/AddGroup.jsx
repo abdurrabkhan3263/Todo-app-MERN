@@ -8,6 +8,7 @@ import useApp from "@/context/context";
 import TodoApi from "@/Api/Todo";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import FormLayoutContainer from "./Container/FormLayoutContainer";
 
 function AddGroup() {
   const navigate = useNavigate();
@@ -56,9 +57,7 @@ function AddGroup() {
   }
 
   return (
-    <div
-      className={`flex h-[70vh] w-[27vw] flex-col items-center ${mode === "dark" ? "border-white" : "border-gray-700"} justify-between rounded-xl border bg-slate-300 p-5 shadow-lg`}
-    >
+    <FormLayoutContainer>
       <div className="flex h-12 w-full items-center justify-between">
         <p className="text-3xl font-semibold text-gray-700">Add Group</p>
         <button className="h-full" onClick={() => navigate(-1)}>
@@ -132,7 +131,7 @@ function AddGroup() {
           </div>
         </div>
       </form>
-    </div>
+    </FormLayoutContainer>
   );
 }
 

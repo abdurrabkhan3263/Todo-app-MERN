@@ -101,7 +101,6 @@ const updateTodo = asyncHandler(async (req, res) => {
   });
 
   if (!updated) throw new ApiError(400, "Todo is not found");
-  console.log(updated);
   return res
     .status(200)
     .json(new ApiResponse(200, updated, "Todo is updated successfully"));
@@ -179,8 +178,6 @@ const getImportant = asyncHandler(async (req, res) => {
 
 const completeTodo = asyncHandler(async (req, res) => {
   const { todo_id, status } = req.body;
-
-  console.log(req.body);
 
   if (!isValidObjectId(todo_id)) throw new ApiError(400, "Invalid todo id");
 
@@ -289,7 +286,6 @@ function sendNotification(phoneNumber, todoName, message) {
           });
         });
     } catch (error) {
-      console.log(error);
       console.error("Something went wrong");
     }
   }, 600000);

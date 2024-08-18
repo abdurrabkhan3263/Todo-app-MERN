@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { SideNav } from "./components";
+import { MobileSideNav, SideNav } from "./components";
 import Container from "./components/Container/Container";
 import { AppProvider } from "./context/context";
 import UserApi from "./Api/User";
@@ -10,7 +10,6 @@ function App() {
   const [mode, setMode] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -69,8 +68,13 @@ function App() {
         ) : !user?.status ? (
           <Outlet />
         ) : (
-          <div className={`flex w-full p-4`}>
-            <SideNav />
+          <div className={`flex w-full flex-col xl:flex-col xl:p-4`}>
+            <div className="hidden xl:block">
+              <SideNav />
+            </div>
+            <div className="block xl:hidden">
+              <MobileSideNav />
+            </div>
             <Container>
               <Outlet />
             </Container>

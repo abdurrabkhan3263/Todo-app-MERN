@@ -140,7 +140,6 @@ function Todo_Card({
       client.invalidateQueries({ queryKey: ["todos"] });
     },
     onError: (error) => {
-      console.log("THIS IS ERROR:- ", error);
       toast.error(error);
     },
   });
@@ -213,7 +212,7 @@ function Todo_Card({
         </div>
       )}
       <div
-        className={`flex h-[300px] w-full flex-col overflow-hidden rounded-2xl text-white transition-all hover:-translate-y-1 hover:scale-105 ${mode === "dark" ? "bg-darkCard shadow-lg shadow-light" : "bg-lightCard shadow-lg shadow-dark"} p-4`}
+        className={`flex h-[340px] w-full flex-col overflow-hidden rounded-2xl text-white transition-all hover:-translate-y-1 hover:scale-105 xl:h-[300px] ${mode === "dark" ? "bg-darkCard shadow-lg shadow-light" : "bg-lightCard shadow-lg shadow-dark"} p-4`}
       >
         <div className="flex h-[40px] items-center justify-between">
           <input
