@@ -5,9 +5,10 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import useApp from "@/context/context";
 import UserApi from "@/Api/User";
+import { Moon, Sun } from "@/assets/icons";
 
 function ProfileSection({ userName, avatar }) {
-  const { logoutUser, mode } = useApp();
+  const { logoutUser, mode, changeMode } = useApp();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -26,7 +27,7 @@ function ProfileSection({ userName, avatar }) {
   return (
     <>
       <div
-        className={`hidden min-h-full flex-col items-center text-white xl:flex ${mode === "light" ? "bg-darkBtn" : "bg-lightNav"}`}
+        className={`flex min-h-full flex-col items-center text-white xl:flex ${mode === "light" ? "bg-darkBtn" : "bg-lightNav"}`}
       >
         <div
           className={`flex h-[70px] w-full cursor-default items-center justify-between rounded-xl bg-orange-600 px-2 py-1 shadow-lg`}
@@ -58,7 +59,13 @@ function ProfileSection({ userName, avatar }) {
           </button>
         </div>
         <div className="flex h-[50px] w-full cursor-default items-center justify-between rounded-xl bg-orange-600 px-2 py-3 shadow-lg">
-          <p className="text-base font-semibold">LogOut</p>
+          <p className="hidden text-base font-semibold xl:block">LogOut</p>
+          <button
+            className={`block rounded-lg p-2 xl:hidden`}
+            onClick={() => changeMode()}
+          >
+            {mode === "light" ? <Moon /> : <Sun />}
+          </button>
           <button
             onClick={handleLogout}
             className="rounded-full bg-transparent p-2.5 transition-colors hover:bg-gray-500"

@@ -104,7 +104,9 @@ function UpdateProfile() {
   }, [fullName, username, avatar]);
 
   return (
-    <div className={`h-[50vh] w-[23vw] rounded-xl bg-white p-4`}>
+    <div
+      className={`h-screen w-screen bg-white p-4 sm:h-[50vh] sm:w-[80vw] sm:rounded-xl md:w-[50vw] xl:w-[23vw]`}
+    >
       <form
         className="flex h-full w-full flex-col items-center justify-between"
         onSubmit={handleFormSubmit}

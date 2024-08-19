@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useForm } from "react-hook-form";
@@ -15,6 +15,7 @@ import FormLayoutContainer from "./Container/FormLayoutContainer";
 function AddList() {
   const { register, handleSubmit, setValue, getValues } = useForm();
   const [uiColor, setUiColor] = useState({});
+  const [transValue, setTransValue] = useState(200);
 
   const { list_id } = useParams();
   const { mode } = useApp();
@@ -101,6 +102,10 @@ function AddList() {
     }
   }, [data]);
 
+  useEffect(() => {
+    console.log(transValue);
+  }, [transValue]);
+
   return (
     <FormLayoutContainer>
       <div className="flex h-12 w-full items-center justify-between">
@@ -140,21 +145,47 @@ function AddList() {
               <label htmlFor="light_mode_color" className="font-medium">
                 Choose light mode color
               </label>
-              <div className="mt-2 flex w-full gap-x-4 overflow-x-auto">
-                {lightColor.map((color) => {
-                  return (
-                    <div
-                      key={color}
-                      value={color}
-                      className={`h-[40px] w-[40px] flex-shrink-0 cursor-pointer rounded-full ${uiColor?.lightColor === color && "border-2"} border-white`}
-                      style={{ backgroundColor: color }}
-                      onClick={() => {
-                        setUiColor((prev) => ({ ...prev, lightColor: color }));
-                        setColor({ lightColor: color });
-                      }}
-                    ></div>
-                  );
-                })}
+              <div className="relative mt-2 w-full overflow-hidden">
+                <span
+                  className="absolute left-0 top-1/2 z-50 h-full -translate-y-1/2 cursor-pointer content-center"
+                  onClick={() =>
+                    setTransValue((prev) => (prev >= 200 ? prev : prev + 56))
+                  }
+                >
+                  <ChevronLeft />
+                </span>
+                <div className="h-14">
+                  <div
+                    className={`absolute top-1/2 flex w-full -translate-y-1/2 items-center justify-center gap-2 transition-all`}
+                    style={{ left: `${transValue}px` }}
+                  >
+                    {lightColor.map((color) => {
+                      return (
+                        <div
+                          key={color}
+                          value={color}
+                          className={`h-[40px] w-[40px] flex-shrink-0 cursor-pointer rounded-full ${uiColor?.lightColor === color && "border-2"} border-white`}
+                          style={{ backgroundColor: color }}
+                          onClick={() => {
+                            setUiColor((prev) => ({
+                              ...prev,
+                              lightColor: color,
+                            }));
+                            setColor({ lightColor: color });
+                          }}
+                        ></div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <span
+                  className="absolute right-0 top-1/2 h-full -translate-y-1/2 cursor-pointer content-center"
+                  onClick={() =>
+                    setTransValue((prev) => (prev <= -228 ? prev : prev - 56))
+                  }
+                >
+                  <ChevronRight />
+                </span>
               </div>
             </div>
             <div className="w-full">

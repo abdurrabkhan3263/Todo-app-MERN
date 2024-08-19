@@ -37,6 +37,8 @@ const createTodoForList = asyncHandler(async (req, res) => {
 
 const createTodo = asyncHandler(async (req, res) => {
   const user_id = req?.user._id;
+  const user = req.user;
+
   const { todoName = "", content = "", remindMe = "" } = req.body;
   if (!isValidObjectId(user_id)) throw new ApiError(400, "Invalid list id");
 
@@ -53,6 +55,7 @@ const createTodo = asyncHandler(async (req, res) => {
 
   const createdTodo = await Todo.create({
     ...todoValue,
+    phoneNumber: user?.phoneNumber,
     "belongsTo.user_id": user_id,
   });
 
@@ -271,7 +274,6 @@ function sendNotification(phoneNumber, todoName, message) {
     try {
       const currentDate = Date.now();
       const twoMinutesFromNow = currentDate + 10.5 * 60 * 1000;
-
       const data = await Todo.find({
         remindMe: {
           $gt: currentDate,
@@ -282,7 +284,7 @@ function sendNotification(phoneNumber, todoName, message) {
       data.length > 0 &&
         data.forEach((todo) => {
           Todo.findByIdAndUpdate(todo._id, { isReminded: true }).then(() => {
-            sendNotification(9004757089, todo.todoName, todo.content);
+            sendNotification(todo.phoneNumber, todo.todoName, todo.content);
           });
         });
     } catch (error) {

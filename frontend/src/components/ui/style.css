@@ -66,3 +66,11 @@
 .img__Container:hover .user__Container {
   display: block;
 }
+
+.image__main__container {
+  position: relative;
+}
+
+.image__main__container:hover .user__info__container {
+  display: block;
+}

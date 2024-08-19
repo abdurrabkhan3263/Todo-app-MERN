@@ -28,7 +28,9 @@ function ChangePassword() {
     }
   };
   return (
-    <div className={`h-fit w-[23vw] rounded-xl bg-white p-4`}>
+    <div
+      className={`h-fit w-[90vw] rounded-xl bg-white p-4 sm:w-[50vw] xl:w-[23vw]`}
+    >
       <div className="flex w-full items-center justify-between">
         <p className="text-xl font-semibold text-gray-700">Change Password</p>
         <button className="text-gray-700" onClick={() => navigate(-1)}>
