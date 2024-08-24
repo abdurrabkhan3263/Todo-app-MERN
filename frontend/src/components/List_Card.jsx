@@ -7,6 +7,7 @@ import { Delete, Edit, Navigation } from "@/assets/icons";
 import { useNavigate } from "react-router-dom";
 import "./ui/scroll.css";
 import { Link } from "react-router-dom";
+import DeleteDialogBox from "./ui/DeleteComponent/DeleteDialogBox";
 
 function List_Card({ title, content, id, color }) {
   const [showDelete, setShowDelete] = useState(false);
@@ -44,20 +45,11 @@ function List_Card({ title, content, id, color }) {
     <>
       {showDelete && (
         <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,0.5)]">
-          <div className="flex h-[20%] w-[20%] items-center justify-between bg-white px-4">
-            <button
-              onClick={() => setShowDelete(false)}
-              className="rounded-lg border px-5 py-1 hover:bg-lightNav"
-            >
-              Close
-            </button>
-            <button
-              className="rounded-lg border px-5 py-1 hover:bg-lightNav"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
-          </div>
+          <DeleteDialogBox
+            setDelete={handleDelete}
+            setShowDelete={setShowDelete}
+            type="List"
+          />
         </div>
       )}
       <div

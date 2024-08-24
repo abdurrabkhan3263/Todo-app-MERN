@@ -10,7 +10,8 @@ import "./ui/scroll.css";
 import "./ui/style.css";
 import { debounce } from "lodash";
 import { Pen } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import DeleteDialogBox from "./ui/DeleteComponent/DeleteDialogBox";
 
 const reducer = (currentState, actionMethod) => {
   if (actionMethod.type === "DEC_COUNTER") {
@@ -187,28 +188,23 @@ function Todo_Card({
     deleteMutation.mutate();
   };
 
+  const handleDeleteDialog = () => {
+    clearInterval(interval);
+    Count_Num = 5;
+    delDispatch({ type: "TOGGLE_SHOW_DELETE", value: false });
+    delDispatch({ type: "DEC_COUNTER", value: Count_Num });
+  };
+
   return (
     <>
       {deleteReducer?.showDelete && (
         <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,0.5)]">
-          <div className="flex h-[20%] w-[20%] items-center justify-between bg-white px-4">
-            <p>Automatic Close on {deleteReducer.delCounter}</p>
-            <button
-              onClick={() => {
-                delDispatch({ type: "TOGGLE_SHOW_DELETE", value: false });
-                clearInterval(interval);
-              }}
-              className="rounded-lg border px-5 py-1 hover:bg-lightNav"
-            >
-              Close
-            </button>
-            <button
-              className="rounded-lg border px-5 py-1 hover:bg-lightNav"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
-          </div>
+          <DeleteDialogBox
+            setDelete={handleDelete}
+            setShowDelete={handleDeleteDialog}
+            type={"Todo"}
+            timer={deleteReducer.delCounter}
+          />
         </div>
       )}
       <div
@@ -223,7 +219,7 @@ function Todo_Card({
             className="h-6 w-6"
             onChange={handleIsCompleted}
           />
-          <div className="update__todo relative flex h-full w-0 flex-row-reverse items-center rounded-3xl transition-all">
+          <div className="update__todo relative hidden h-full w-0 flex-row-reverse items-center rounded-3xl transition-all xl:flex">
             <button
               className="relative ml-2 h-[35px] w-8 transition-all"
               onClick={handleIsImpotent}
@@ -248,6 +244,32 @@ function Todo_Card({
             >
               <Pen width={"28px"} height={"28px"} />
             </div>
+          </div>
+          <div className="flex items-center xl:hidden">
+            <div
+              className="block hover:text-lightNav xl:hidden"
+              onClick={() => navigate(`edit-todo/${id}`)}
+            >
+              <Pen width={"28px"} height={"28px"} />
+            </div>
+            <button
+              className="relative ml-2 h-[35px] w-8 transition-all"
+              onClick={handleIsImpotent}
+            >
+              <Star
+                height={"35px"}
+                width={"35px"}
+                stroke={isImportant ? "#FFFF00" : "#FFFFFF"}
+                className="absolute right-0 top-1/2 z-50 -translate-y-1/2"
+                ref={star}
+              />
+              <div
+                className="absolute right-0 top-1/2 -translate-y-1/2 scale-0 opacity-0"
+                ref={loader}
+              >
+                <SimpleLoader width={"35px"} height={"35px"} fill={"#FFFFFF"} />
+              </div>
+            </button>
           </div>
         </div>
         <div className="flex-grow overflow-hidden">

@@ -263,7 +263,6 @@ function sendNotification(phoneNumber, todoName, message) {
       from: twilioNumber,
       to: userNumber,
     })
-    .then((success) => console.log("Message sent successfully", success))
     .catch((error) => {
       console.error("Error sending message", error);
     });

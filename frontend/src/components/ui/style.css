@@ -19,7 +19,7 @@
   opacity: 1;
   padding-inline: 10px;
   padding-block: 5px;
-  background-color: blueviolet;
+  background-color: rgb(119, 110, 128);
 }
 
 .update__todo:hover .update__icon {

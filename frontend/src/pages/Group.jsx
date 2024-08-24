@@ -1,6 +1,6 @@
 import React from "react";
 import { AddCard, Group_Card } from "@/components";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import useApp from "@/context/context";
 import { useQuery } from "@tanstack/react-query";
 import TodoApi from "@/Api/Todo";
@@ -8,13 +8,15 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function Group() {
-  const { mode } = useApp();
+  const { mode, logoutUser } = useApp();
   const groupHeading = React.useRef(null);
+  const navigate = useNavigate();
 
   const {
     data: { data } = "",
     isLoading,
     isError,
+    error,
   } = useQuery({
     queryKey: ["group"],
     queryFn: async () => TodoApi.getGroup(),
@@ -47,15 +49,13 @@ function Group() {
         ) : (
           <>
             <AddCard navLink={"add-group"} />
-            {Array.isArray(data) && data.length > 0 ? (
+            {Array.isArray(data) &&
+              data.length > 0 &&
               data.map(({ _id, name }) => (
                 <div key={_id} className="relative">
                   <Group_Card id={_id} groupName={name} />
                 </div>
-              ))
-            ) : (
-              <div className="text-2xl">No Group Found</div>
-            )}
+              ))}
           </>
         )}
       </div>

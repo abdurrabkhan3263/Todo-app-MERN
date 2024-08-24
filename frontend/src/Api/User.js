@@ -69,6 +69,19 @@ class user {
       throw error;
     }
   }
+  async refreshAccessToken() {
+    try {
+      const response = await fetch(`${this.baseUrl}/user/refresh-token`, {
+        method: "PATCH",
+        credentials: "include",
+      });
+      const result = await response.json();
+      if (!response.ok) throw result?.message || "Something went wrong";
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const UserApi = new user();

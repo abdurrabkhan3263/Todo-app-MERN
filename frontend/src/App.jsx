@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { MobileSideNav, SideNav } from "./components";
 import Container from "./components/Container/Container";
 import { AppProvider } from "./context/context";
@@ -18,8 +18,11 @@ function App() {
         const response = await UserApi.getCurrentUser();
         loginUser(response?.data);
       } catch (error) {
+        if (error.message === "jwt expired") {
+          navigate("/login");
+          logoutUser();
+        }
         setIsError(true);
-        navigate("/login");
       } finally {
         setIsLoading(false);
       }

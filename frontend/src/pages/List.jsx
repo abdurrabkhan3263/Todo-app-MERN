@@ -1,24 +1,21 @@
 import useApp from "@/context/context";
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { AddCard, List_Card } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import TodoApi from "@/Api/Todo";
-import { toast } from "sonner";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function List() {
-  const { mode } = useApp();
+  const { mode, logoutUser } = useApp();
   const listHeading = React.useRef(null);
+  const navigate = useNavigate();
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["lists"],
     queryFn: async () => await TodoApi.getLists(),
   });
-
-  if (isError) {
-    toast.error(error);
-  }
 
   useGSAP(() => {
     gsap.from(listHeading.current, {

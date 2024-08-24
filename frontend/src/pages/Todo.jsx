@@ -3,13 +3,15 @@ import { AddCard, Todo_Card } from "@/components";
 import useApp from "@/context/context";
 import TodoApi from "@/Api/Todo";
 import { useQuery } from "@tanstack/react-query";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function Todo() {
-  const { mode } = useApp();
+  const { mode, logoutUser } = useApp();
   const todoHeading = React.useRef(null);
+  const navigate = useNavigate();
+
   const {
     data = "",
     isLoading,

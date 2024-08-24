@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TodoApi from "@/Api/Todo";
 import { useQuery } from "@tanstack/react-query";
 import useApp from "@/context/context";
@@ -11,8 +11,9 @@ import { useGSAP } from "@gsap/react";
 
 function List_Todo() {
   const { id } = useParams();
-  const { mode } = useApp();
+  const { mode, logoutUser } = useApp();
   const listTodoHeading = React.useRef(null);
+  const navigate = useNavigate();
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["listTodos"],
@@ -21,10 +22,6 @@ function List_Todo() {
       return await TodoApi.getListsTodo(id);
     },
   });
-
-  if (isError) {
-    toast.error(error);
-  }
 
   useGSAP(() => {
     gsap.from(listTodoHeading.current, {

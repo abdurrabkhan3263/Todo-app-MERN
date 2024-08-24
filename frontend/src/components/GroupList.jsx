@@ -6,6 +6,7 @@ import TodoApi from "@/Api/Todo";
 import { toast } from "sonner";
 import { Navigation } from "lucide-react";
 import { Delete, Edit } from "@/assets/icons";
+import DeleteDialogBox from "./ui/DeleteComponent/DeleteDialogBox";
 
 function GroupList({ title, content, id, color, groupId }) {
   const [showDelete, setShowDelete] = useState(false);
@@ -43,20 +44,11 @@ function GroupList({ title, content, id, color, groupId }) {
     <>
       {showDelete && (
         <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-[rgba(0,0,0,0.5)]">
-          <div className="flex h-[20%] w-[20%] items-center justify-between bg-white px-4">
-            <button
-              onClick={() => setShowDelete(false)}
-              className="rounded-lg border px-5 py-1 hover:bg-lightNav"
-            >
-              Close
-            </button>
-            <button
-              className="rounded-lg border px-5 py-1 hover:bg-lightNav"
-              onClick={handleDelete}
-            >
-              Delete
-            </button>
-          </div>
+          <DeleteDialogBox
+            setDelete={handleDelete}
+            setShowDelete={setShowDelete}
+            type={"Group List"}
+          />
         </div>
       )}
       <div

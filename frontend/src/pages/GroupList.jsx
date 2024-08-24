@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TodoApi from "@/Api/Todo";
 import useApp from "@/context/context";
 import { GroupList as GroupListCard } from "@/components/index.js";
@@ -10,8 +10,9 @@ import gsap from "gsap";
 
 function GroupList() {
   const { id } = useParams();
-  const { mode } = useApp();
+  const { mode, logoutUser } = useApp();
   const groupListHeading = useRef(null);
+  const navigate = useNavigate();
 
   const {
     data: { data } = "",

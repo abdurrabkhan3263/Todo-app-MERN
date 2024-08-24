@@ -10,6 +10,7 @@ import { base_url } from "@/conf";
 import { toast } from "sonner";
 import useApp from "@/context/context";
 import { AtSignIcon, KeyRoundIcon, OpenEye, CloseEye } from "@/assets/icons";
+import { Auth } from "@/pages";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -53,73 +54,75 @@ function LoginForm() {
     formSubmitMutation.mutate(data);
   };
   return (
-    <FormLayout headingContent={"Login your account"}>
-      <form
-        onSubmit={handleSubmit(formSubmit)}
-        className="flex h-full flex-col justify-between"
-      >
-        <div className="flex flex-col gap-y-8">
-          <div>
-            <label htmlFor="email" className="font-semibold">
-              Enter your email
-            </label>
-            <div className="relative mt-2">
-              <Input
-                type="email"
-                id="email"
-                {...register("email")}
-                className="peer border-none py-[22px] pl-10 text-base text-gray-900 ring-gray-500 focus:ring"
-              />
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900">
-                <AtSignIcon height={20} width={20} />
-              </span>
+    <Auth>
+      <FormLayout headingContent={"Login your account"}>
+        <form
+          onSubmit={handleSubmit(formSubmit)}
+          className="flex h-full flex-col justify-between"
+        >
+          <div className="flex flex-col gap-y-8">
+            <div>
+              <label htmlFor="email" className="font-semibold">
+                Enter your email
+              </label>
+              <div className="relative mt-2">
+                <Input
+                  type="email"
+                  id="email"
+                  {...register("email")}
+                  className="peer border-none py-[22px] pl-10 text-base text-gray-900 ring-gray-500 focus:ring"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900">
+                  <AtSignIcon height={20} width={20} />
+                </span>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="password" className="font-semibold">
+                Enter your password
+              </label>
+              <div className="relative mt-2">
+                <Input
+                  type={!showPassword ? "password" : "text"}
+                  id="password"
+                  {...register("password")}
+                  className="peer border-none px-10 py-[22px] text-base text-gray-900 ring-gray-500 focus:ring"
+                />
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900">
+                  <KeyRoundIcon height={20} width={20} />
+                </span>
+                <span
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {!showPassword ? (
+                    <OpenEye height={20} width={20} />
+                  ) : (
+                    <CloseEye height={20} width={20} />
+                  )}
+                </span>
+              </div>
             </div>
           </div>
           <div>
-            <label htmlFor="password" className="font-semibold">
-              Enter your password
-            </label>
-            <div className="relative mt-2">
-              <Input
-                type={!showPassword ? "password" : "text"}
-                id="password"
-                {...register("password")}
-                className="peer border-none px-10 py-[22px] text-base text-gray-900 ring-gray-500 focus:ring"
-              />
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900">
-                <KeyRoundIcon height={20} width={20} />
-              </span>
-              <span
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"
-                onClick={() => setShowPassword((prev) => !prev)}
+            <div className="text-end">
+              <Button
+                type="submit"
+                className="w-full bg-white text-base font-bold text-gray-800 hover:bg-gray-200"
               >
-                {!showPassword ? (
-                  <OpenEye height={20} width={20} />
-                ) : (
-                  <CloseEye height={20} width={20} />
-                )}
-              </span>
+                Login
+              </Button>
             </div>
+            <p className="mt-3 text-center">
+              Already have not account?
+              <span className="pl-2.5 underline-offset-1 hover:underline">
+                <Link to={"/sign-in"}>Sign-in</Link>
+              </span>
+            </p>
           </div>
-        </div>
-        <div>
-          <div className="text-end">
-            <Button
-              type="submit"
-              className="w-full bg-white text-base font-bold text-gray-800 hover:bg-gray-200"
-            >
-              Login
-            </Button>
-          </div>
-          <p className="mt-3 text-center">
-            Already have not account?
-            <span className="pl-2.5 underline-offset-1 hover:underline">
-              <Link to={"/sign-in"}>Sign-in</Link>
-            </span>
-          </p>
-        </div>
-      </form>
-    </FormLayout>
+        </form>
+      </FormLayout>
+    </Auth>
   );
 }
 

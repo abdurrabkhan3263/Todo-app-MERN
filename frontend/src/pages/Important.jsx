@@ -5,13 +5,14 @@ import { useQuery } from "@tanstack/react-query";
 import TodoApi from "@/Api/Todo";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Important() {
-  const { mode } = useApp();
+  const { mode, logoutUser } = useApp();
   const impHeading = React.useRef(null);
+  const navigate = useNavigate();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["getImpTodo"],
     queryFn: async () => await TodoApi.getImportantTodo(),
   });
@@ -40,21 +41,19 @@ function Important() {
       <div className="mt-6 grid h-full w-full flex-1 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-5">
         {isLoading
           ? "Loading......"
-          : Array.isArray(data) && data.length > 0
-            ? data.map(
-                ({ _id, todoName, content, isCompleted, isImportant }) => (
-                  <div key={_id}>
-                    <Todo_Card
-                      title={todoName}
-                      content={content}
-                      isCompleted={isCompleted}
-                      isImportant={isImportant}
-                      id={_id}
-                    />
-                  </div>
-                ),
-              )
-            : "No Important found"}
+          : Array.isArray(data) &&
+            data.length > 0 &&
+            data.map(({ _id, todoName, content, isCompleted, isImportant }) => (
+              <div key={_id}>
+                <Todo_Card
+                  title={todoName}
+                  content={content}
+                  isCompleted={isCompleted}
+                  isImportant={isImportant}
+                  id={_id}
+                />
+              </div>
+            ))}
       </div>
     </div>
   );

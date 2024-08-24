@@ -44,9 +44,7 @@ const router = createBrowserRouter(
         path="/sign-in"
         element={
           <AuthProvider authentication={false}>
-            <Auth>
-              <SignInForm />
-            </Auth>
+            <SignInForm />
           </AuthProvider>
         }
       />
@@ -54,9 +52,7 @@ const router = createBrowserRouter(
         path="/login"
         element={
           <AuthProvider authentication={false}>
-            <Auth>
-              <LoginForm />
-            </Auth>
+            <LoginForm />
           </AuthProvider>
         }
       />

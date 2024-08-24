@@ -54,7 +54,7 @@ function MobileSideNav() {
           />
         </div>
         <div
-          className="relative h-16 w-16 rounded-full bg-gray-500 shadow-xl"
+          className="relative h-16 w-16 overflow-hidden rounded-full bg-gray-500 shadow-xl"
           onClick={() => setShowInfo((prev) => !prev)}
         >
           <img
