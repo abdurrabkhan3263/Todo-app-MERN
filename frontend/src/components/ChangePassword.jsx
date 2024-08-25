@@ -32,7 +32,7 @@ function ChangePassword() {
       className={`h-fit w-[90vw] rounded-xl bg-white p-4 sm:w-[50vw] xl:w-[23vw]`}
     >
       <div className="flex w-full items-center justify-between">
-        <p className="text-xl font-semibold text-gray-700">Change Password</p>
+        <p className="text-xl font-bold text-gray-700">Change Password</p>
         <button className="text-gray-700" onClick={() => navigate(-1)}>
           <X width={"35px"} height={"35px"} />
         </button>
@@ -40,7 +40,9 @@ function ChangePassword() {
       <form onSubmit={handleSubmit}>
         <div className="mt-3 w-full">
           <div className="w-full">
-            <label htmlFor="old-password">Old Password</label>
+            <label htmlFor="old-password" className="font-semibold">
+              Old Password
+            </label>
             <Input
               name="oldPassword"
               className="my-2"
@@ -48,7 +50,9 @@ function ChangePassword() {
             />
           </div>
           <div className="w-full">
-            <label htmlFor="new-password">New Password</label>
+            <label htmlFor="new-password" className="font-semibold">
+              New Password
+            </label>
             <Input
               name="newPassword"
               className="my-2"
@@ -56,8 +60,8 @@ function ChangePassword() {
             />
           </div>
         </div>
-        <div className="mt-4 h-fit w-full">
-          <Button size="full" className="font-semibold" type="submit">
+        <div className="mt-4 h-fit w-full text-end">
+          <Button size="sm" className="font-semibold" type="submit">
             Change Password
           </Button>
         </div>

@@ -171,21 +171,40 @@ function UpdateProfile() {
             </div>
           </div>
         </div>
-        <div className="w-full">
-          <Button type="submit" size="full" className="relative">
-            <div className="relative h-3 w-full overflow-hidden">
-              <p
-                ref={updateTxtRef}
-                className="absolute right-1/2 top-1/2 -translate-y-1/2 translate-x-1/2 font-semibold"
+        <div className="w-full text-end">
+          <Button
+            type="submit"
+            size="full"
+            className="relative"
+            disabled={profileMutation.isPending}
+          >
+            <span ref={updateTxtRef} className="opacity-100">
+              Update
+            </span>
+            <div
+              ref={loadingRef}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0"
+            >
+              <svg
+                className="h-5 w-5 animate-spin text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
               >
-                Update
-              </p>
-              <span
-                ref={loadingRef}
-                className="opacity-1 absolute bottom-1/2 right-1/2 translate-x-1/2 translate-y-1/2 scale-0 font-semibold"
-              >
-                Loading....
-              </span>
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A8.001 8.001 0 0112 4.472v3.09a4.001 4.001 0 00-4 4.229H6zm10-3.09a8.001 8.001 0 01-5.291 7.528V20a4.001 4.001 0 004-4.229h3z"
+                ></path>
+              </svg>
             </div>
           </Button>
         </div>

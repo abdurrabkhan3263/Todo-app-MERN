@@ -52,7 +52,7 @@ function ProfileSection({ userName, avatar }) {
           </button>
           <button
             className="flex h-11 w-full items-center gap-x-3 rounded-md bg-blue-500 px-3 transition-colors hover:bg-blue-600"
-            onClick={() => navigate("/change-password")}
+            onClick={() => navigate("change-password")}
           >
             <KeyRoundIcon />
             <p className="text-sm font-semibold">Change Password</p>

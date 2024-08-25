@@ -44,7 +44,9 @@ export default function AuthProvider({ children, authentication = true }) {
   React.useEffect(() => {
     const pathname = location.pathname;
     if (!accessToken || !refreshToken) {
-      navigate("/login");
+      if (!(pathname.startsWith("/login") || pathname.startsWith("/sign-in"))) {
+        navigate("/login");
+      }
       setLoader(false);
       return;
     }
@@ -57,7 +59,6 @@ export default function AuthProvider({ children, authentication = true }) {
     ) {
       navigate("/");
     }
-    console.log("hell");
     setLoader(false);
   }, [navigate, authentication, accessToken, refreshToken, location.pathname]);
 
