@@ -4,6 +4,7 @@ import { MobileSideNav, SideNav } from "./components";
 import Container from "./components/Container/Container";
 import { AppProvider } from "./context/context";
 import UserApi from "./Api/User";
+import Cookies from "js-cookie";
 
 function App() {
   const [user, setUser] = useState({ status: false, user: null });
@@ -18,7 +19,10 @@ function App() {
         const response = await UserApi.getCurrentUser();
         loginUser(response?.data);
       } catch (error) {
-        if (error.message === "jwt expired") {
+        if (
+          error?.message === "jwt expired" ||
+          error?.message === "Invalid Access Token"
+        ) {
           navigate("/login");
           logoutUser();
         }
